@@ -23,16 +23,16 @@ class MainActivity : AppCompatActivity() {
         randomizeNumbers()
         // set an initial score to 0
         score = 0
-        textView_main_score.setText("Streak: " + score.toString())
+        textView_main_score.text = "Streak: $score"
     }
 
     fun onLeftClick(view: View) {
         if(number1 < number2){
-            Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show()
+            makeToast("Incorrect!")
             score = 0
             randomizeNumbers()
         }else{
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show()
+            makeToast("Correct!")
             score++
             randomizeNumbers()
         }
@@ -40,11 +40,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onRightClick(view: View){
         if(number1 > number2){
-            Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show()
+            makeToast("Incorrect!")
             score = 0
             randomizeNumbers()
         }else{
-            Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show()
+            makeToast("Correct!")
             score++
             randomizeNumbers()
         }
@@ -57,8 +57,12 @@ class MainActivity : AppCompatActivity() {
             number2 = (Math.random() * 6 + 1).toInt()
         }
         // assign those numbers to the buttons
-        textView_main_score.setText("Streak: " + score.toString())
-        button_main_left.setText(number1.toString())
-        button_main_right.setText(number2.toString())
+        textView_main_score.text = "Streak: $score"
+        button_main_left.text = number1.toString()
+        button_main_right.text = number2.toString()
+    }
+
+    private fun makeToast(text: String){
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 }
